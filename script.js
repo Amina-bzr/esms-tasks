@@ -1,61 +1,37 @@
-/*mobile navbar*/
-const ham=document.querySelector('.hamburger')
-const mobnav=document.querySelector('.mobile-nav')
-
-ham.addEventListener('click',function () {
-    ham.classList.toggle('is-active')
-    mobnav.classList.toggle('is-active')
-    if (ham.classList.contains('is-active')) {
-        document.querySelector('body').style.overflow='hidden'; } /*unable scrolling*/
-    else 
-        document.querySelector('body').style.overflow='scroll';
-})
-
-const section=document.querySelectorAll('.redirect_sec')
-
-section.forEach((sec) =>  {sec.addEventListener('click', function() {
-    ham.classList.toggle('is-active')
-    mobnav.classList.toggle('is-active')
-    document.querySelector('body').style.overflow='scroll' })
-})
+let acc = document.getElementsByClassName('accordion')
 
 
-/*animating the title */
-const title=document.querySelector('.title')
 
-
-  var observer = new IntersectionObserver((entries) => {
-
-      entries.forEach((entry) => {
-
-        if (entry.isIntersecting == true) {
-          title.classList.add('animated-title')
-        }
-      }
-
-      )
-    } ) ;
-
-  var target = document.querySelector('.workshops')
-observer.observe(target);
-
-/*slider*/
-const arrow_right=document.querySelector('#right')
-const arrow_left=document.querySelector('#left')
-const slider=document.querySelector('.slider')
-
-arrow_right.addEventListener('click',
-function () { 
-   
-  
-  slider.style.marginLeft="-100%"
-}
-)
-
-arrow_left.addEventListener('click',
-function () { 
+for(let i=0;i<acc.length;i++){
+  acc[i].addEventListener('click',function(){
     
-  slider.style.marginLeft="0%"
+    
+    
+    
+    let panel = this.nextElementSibling
+    
+    
+    
+    if(panel.style.maxHeight){
+      panel.style.maxHeight=null;
+      this.classList.remove('open')
+      this.getElementsByClassName('icon')[0].innerHTML ='+';
+    }
+    
+    else{
+      
+      
+      for(let x=0;x<acc.length; x++){
+        acc[x].classList.remove('open')
+        acc[x].nextElementSibling.style.maxHeight=null;
+        acc[x].getElementsByClassName('icon')[0].innerHTML ='+';
 
+      }
+      
+      
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      this.classList.toggle('open')
+      this.getElementsByClassName('icon')[0].innerHTML ='-'
+    }
+  })
 }
-)

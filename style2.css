@@ -45,6 +45,10 @@ html, body {
   z-index: 100;
 }
 
+.logo img {
+  width: 280px;
+}
+
 a {
   text-decoration: none;
   color: var(--main-text-color);
